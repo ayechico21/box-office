@@ -3,6 +3,12 @@ import MainPageLayout from "../components/MainPageLayout";
 import apiGet from "../misc/config";
 import ShowGrid from "../components/show/ShowGrid";
 import ActorGrid from "../components/actor/ActorGrid";
+import {
+  RadioInputsWrapper,
+  SearchButtonWrapper,
+  SearchInput,
+} from "./Home.styled";
+import CustomRadio from "../components/CustomRadio";
 
 const Home = () => {
   const [input, setInput] = useState("");
@@ -43,35 +49,35 @@ const Home = () => {
 
   return (
     <MainPageLayout>
-      <input
+      <SearchInput
         type="text"
         onChange={onInputChange}
         onKeyDown={onKeyDown}
         placeholder="Enter Keyword"
       />
-      <div>
-        <label htmlFor="shows-search">
-          Shows
-          <input
+      <RadioInputsWrapper>
+        <div>
+          <CustomRadio
+            label="shows-search"
             id="shows-search"
-            type="radio"
             name="search"
             value="shows"
             onChange={onRadioChange}
           />
-        </label>
-        <label htmlFor="actors-search">
-          Actors
-          <input
+        </div>
+        <div>
+          <CustomRadio
+            label="actors-search"
             id="actors-search"
-            type="radio"
             name="search"
             value="people"
             onChange={onRadioChange}
           />
-        </label>
-      </div>
-      <button onClick={onSearch}>Search</button>
+        </div>
+      </RadioInputsWrapper>
+      <SearchButtonWrapper>
+        <button onClick={onSearch}>Search</button>
+      </SearchButtonWrapper>
       {renderResults()}
     </MainPageLayout>
   );
